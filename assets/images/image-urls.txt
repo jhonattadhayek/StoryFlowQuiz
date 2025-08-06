@@ -1,0 +1,76 @@
+# 🔗 URLs de Imagens para Teste Temporário
+
+## IMPORTANTE: Estas URLs são apenas para TESTE INICIAL
+## Para produção, baixe e hospede as imagens localmente!
+
+## 1. financial-advisor-character.png (Tela Principal)
+
+### Opção 1 - GraphicMama (MELHOR)
+https://graphicmama.com/blog/wp-content/uploads/2017/09/Office-man-cartoon-character.png
+
+### Opção 2 - Personagem Amigável
+https://cdn3d.iconscout.com/3d/premium/thumb/businessman-with-briefcase-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--business-man-professional-office-pack-illustrations-3239640.png
+
+### Opção 3 - Consultor Financeiro
+https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg
+
+## 2. success-character.png (Tela de Conversão)
+
+### Opção 1 - Personagem com Dinheiro (RECOMENDADO)
+https://vectorcharacters.net/wp-content/uploads/2019/01/Business-Cartoon-Character-with-bag-of-money.png
+
+### Opção 2 - Executivo Bem-sucedido
+https://cdn3d.iconscout.com/3d/premium/thumb/businessman-success-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--business-man-celebration-winner-pack-illustrations-4426983.png
+
+### Opção 3 - Polegar para Cima
+https://img.freepik.com/free-vector/businessman-giving-thumbs-up_1308-32836.jpg
+
+---
+
+## ⚡ Para Teste Rápido (CDN)
+
+Se você quiser testar imediatamente, pode alterar temporariamente no HTML:
+
+### Para financial-advisor-character.png:
+src="https://graphicmama.com/blog/wp-content/uploads/2017/09/Office-man-cartoon-character.png"
+
+### Para success-character.png:
+src="https://vectorcharacters.net/wp-content/uploads/2019/01/Business-Cartoon-Character-with-bag-of-money.png"
+
+---
+
+## 🎯 Sites para Download Definitivo
+
+1. **GraphicMama** (Gratuito, alta qualidade)
+   - https://graphicmama.com/cartoon-character/free-office-man-cartoon-vector-character
+
+2. **VectorCharacters** (Gratuito)
+   - https://vectorcharacters.net/business-vector-characters/
+
+3. **Pngimg** (Gratuito, PNG transparente)
+   - https://pngimg.com/images/people/businessman
+
+4. **Freepik** (Grátis com atribuição)
+   - https://freepik.com/search?query=3d+business+character
+
+---
+
+## 📝 Próximos Passos
+
+1. Teste o projeto com as URLs temporárias
+2. Escolha as imagens que mais gosta
+3. Baixe-as nos sites originais
+4. Renomeie conforme necessário:
+   - financial-advisor-character.png
+   - success-character.png
+5. Coloque na pasta assets/images/
+6. Remova as URLs temporárias e use arquivos locais
+
+---
+
+## ⚠️ ATENÇÃO
+
+- URLs externas podem parar de funcionar
+- Para produção, SEMPRE use imagens locais
+- Verifique direitos de uso antes de usar em produção
+- Otimize as imagens para web (TinyPNG.com)

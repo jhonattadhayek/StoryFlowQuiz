@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapycash Quiz - Descubra por que seu dinheiro nunca sobra</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B',
+                        danger: '#EF4444',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Estilos adicionais para o gráfico -->
+    <style>
+        .chart-bar {
+            transition: height 0.8s ease-out;
+            min-height: 8px;
+        }
+        
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+        
+        /* Animação sutil para as barras */
+        @keyframes barGrow {
+            from {
+                height: 0;
+            }
+            to {
+                height: var(--final-height);
+            }
+        }
+        
+        /* Animações para a página de checkout */
+        .border-3 {
+            border-width: 3px;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Hover effects para os cards de planos */
+        .plan-card {
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Animação para os números de autoridade */
+        .authority-card {
+            transition: all 0.3s ease;
+        }
+
+        .authority-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animação para as setas do carrossel */
+        .carousel-arrow {
+            transition: all 0.2s ease;
+        }
+
+        .carousel-arrow:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animação de entrada para os depoimentos */
+        .testimonial-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gradient animation para o timer */
+        .timer-urgent {
+            background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c);
+            background-size: 300% 300%;
+            animation: gradient-shift 2s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .chart-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        /* Responsividade para mobile */
+        @media (max-width: 640px) {
+            .chart-bar {
+                min-height: 6px;
+            }
+        }
+    </style>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Descubra por que seu dinheiro nunca sobra! Quiz gratuito com diagnóstico personalizado e plano para economizar +R$400 em 30 dias.">
+    <meta name="keywords" content="finanças pessoais, organização financeira, zapycash, quiz financeiro">
+    <meta property="og:title" content="Zapycash Quiz - Descubra por que seu dinheiro nunca sobra">
+    <meta property="og:description" content="7 perguntas rápidas para um plano personalizado de economia">
+    <meta property="og:type" content="website">
+</head>
+<body class="bg-gray-50 font-sans">
+    
+    <!-- Tela 1: Landing Page -->
+    <section id="landing-screen" class="screen min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8">
+        <div class="max-w-lg w-full text-center space-y-8">
+            <!-- Logo -->
+            <div class="flex justify-center mb-8">
+                <img 
+                    src="assets/images/logo-zapycash.svg" 
+                    alt="Zapycash" 
+                    class="w-40 h-16 object-contain"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+            
+            <!-- Título Principal -->
+            <div class="space-y-6">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
+                    Você está perdendo dinheiro todo mês — transforme seu <span class="text-primary font-bold">WhatsApp</span> na sua central de <span class="text-primary font-bold">controle financeiro</span>.
+                </h1>
+            </div>
+            
+            <!-- Hero Character Image -->
+            <div class="flex justify-center my-8">
+                <img 
+                    src="assets/images/img-boneca01.png" 
+                    alt="Consultor Financeiro Zapycash" 
+                    class="w-64 h-64 md:w-80 md:h-80 object-contain"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+            
+            <!-- Subtítulo -->
+            <div class="space-y-6">
+                <p class="text-lg text-gray-500 font-medium">
+                    Descubra em menos de 2 minutos! 👇
+                </p>
+            </div>
+            
+            <!-- Botão -->
+            <button 
+                onclick="startQuiz()" 
+                class="w-full bg-primary hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+                Continuar
+            </button>
+        </div>
+    </section>
+
+    <!-- Tela 2: Quiz -->
+    <section id="quiz-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-md w-full">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 14%"></div>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="text-center mb-8">
+                    <h2 id="question-text" class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="text-primary">Como</span> você controla seus gastos hoje?
+                    </h2>
+                    <p class="text-gray-500 text-lg">
+                        Seja <span class="font-bold text-gray-700">100%</span> sincero.
+                    </p>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="answer-options" class="space-y-4 mb-8">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-between">
+                    <button 
+                        id="prev-btn" 
+                        onclick="previousQuestion()" 
+                        class="px-6 py-2 text-gray-600 hover:text-gray-800 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                    >
+                        ← Anterior
+                    </button>
+                    
+                    <!-- Botão próximo agora oculto, o avanço é automático -->
+                    <div class="text-sm text-gray-500 px-6 py-2">
+                        Selecione uma opção para continuar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 3: Análise -->
+    <section id="analysis-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-md w-full text-center space-y-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-6xl mb-4">🧠</div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="text-primary">Analisando</span> suas respostas...
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="analysis-progress" class="bg-primary h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <p class="text-primary font-semibold">
+                            Progresso: <span id="analysis-percent">0</span>%
+                        </p>
+                        <p class="text-gray-500">
+                            Aguarde um momento...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 4: Diagnóstico -->
+    <section id="diagnosis-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-md w-full space-y-6">
+                <!-- Diagnosis Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div id="diagnosis-emoji" class="text-6xl mb-4">😵‍💫</div>
+                    <h2 id="diagnosis-title" class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="text-primary">Falta de</span> Clareza!
+                    </h2>
+                    <p id="diagnosis-description" class="text-gray-500 text-lg leading-relaxed">
+                        Você até tenta se organizar, mas os <span class="text-gray-700 font-semibold">pequenos gastos</span> descontrolados no fim do mês acabam gerando frustração.
+                    </p>
+                </div>
+
+                <!-- Solution Card -->
+                <div class="bg-gradient-to-r from-primary to-green-600 rounded-2xl p-6 text-white text-center">
+                    <div class="text-4xl mb-4">🤩</div>
+                    <h3 class="text-xl font-bold mb-4">Boa notícia!</h3>
+                    <p class="mb-6">
+                        Com o <strong>Zapycash</strong>, você controla tudo que ganha e gasta de forma <strong>simples e rápida</strong>, direto no <strong>WhatsApp</strong>, com um painel automático.
+                    </p>
+                    <button 
+                        onclick="showVideos()" 
+                        class="w-full bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-6 rounded-xl transition-colors duration-200"
+                    >
+                        Sim! Quero ver como funciona 🚀
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 5: Vídeos -->
+    <section id="videos-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-lg w-full space-y-6">
+                <!-- Title -->
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                        Veja como o <span class="text-primary">Zapycash</span> funciona
+                    </h2>
+                    <p class="text-gray-500">
+                        <span class="font-semibold text-gray-700">2 vídeos</span> rápidos para você entender tudo
+                    </p>
+                </div>
+
+                <!-- Video 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2">📱</div>
+                            <p class="text-gray-600 font-medium">Vídeo: Zapycash no WhatsApp</p>
+                            <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg">▶ Assistir</button>
+                        </div>
+                    </div>
+                    <p class="text-gray-500">
+                        Você terá um <span class="text-primary font-semibold">assistente financeiro</span> disponível 24h no WhatsApp para registrar tudo que você ganha e gasta.
+                    </p>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2">📊</div>
+                            <p class="text-gray-600 font-medium">Vídeo: Painel Automático</p>
+                            <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg">▶ Assistir</button>
+                        </div>
+                    </div>
+                    <p class="text-gray-500">
+                        Tudo que você envia no WhatsApp vai direto para o <span class="text-primary font-semibold">painel visual</span> com relatórios e gráficos — sem esforço.
+                    </p>
+                </div>
+
+                <button 
+                    onclick="showProfileSelection()" 
+                    class="w-full bg-primary hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-xl text-lg transition-colors duration-200"
+                >
+                    Continuar →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 6: Seleção de Perfil -->
+    <section id="profile-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-md w-full space-y-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="text-primary">Como</span> você pretende usar sua assistente financeira?
+                    </h2>
+                    <p class="text-gray-500">
+                        Escolha a opção que mais faz <span class="font-semibold text-gray-700">sentido</span> para você
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <button 
+                        onclick="selectProfile('personal')"
+                        class="profile-option w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-left transition-all duration-200 group shadow-lg"
+                    >
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">🏠</div>
+                            <div>
+                                <h3 class="font-semibold text-lg">Finanças pessoais</h3>
+                                <p class="text-gray-500 group-hover:text-white">
+                                    Para controlar seus gastos pessoais e familiares
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button 
+                        onclick="selectProfile('business')"
+                        class="profile-option w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-left transition-all duration-200 group shadow-lg"
+                    >
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl">💼</div>
+                            <div>
+                                <h3 class="font-semibold text-lg">Pessoal + empresa</h3>
+                                <p class="text-gray-500 group-hover:text-white">
+                                    Para separar finanças pessoais e profissionais
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 7: Loading -->
+    <section id="loading-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <img 
+                src="assets/images/logo-zapycash.svg" 
+                alt="Zapycash" 
+                class="w-32 h-12 object-contain"
+                onerror="this.style.display='none'"
+            >
+        </div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="max-w-md w-full text-center space-y-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-6xl mb-4">⚙️</div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        <span class="text-primary">Criando</span> sua assistente personalizada...
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="loading-progress" class="bg-primary h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <p class="text-primary font-semibold">
+                            Progresso: <span id="loading-percent">0</span>%
+                        </p>
+                        <p class="text-gray-500">
+                            Quase pronto...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela 8: Checkout Final Zapycash -->
+    <section id="plans-screen" class="screen hidden min-h-screen bg-white px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Logo -->
+            <div class="flex justify-center mb-8">
+                <img 
+                    src="assets/images/logo-zapycash.svg" 
+                    alt="Zapycash" 
+                    class="w-32 h-12 object-contain"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+
+            <!-- Headline principal -->
+            <div class="text-center mb-12">
+                <div class="flex justify-center mb-6">
+                    <img 
+                        src="assets/images/img-boneca02.png" 
+                        alt="Personagem de Sucesso Financeiro" 
+                        class="w-32 h-32 md:w-40 md:h-40 object-contain"
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    ✅ Sua assistente financeira está <span class="text-primary">100% pronta!</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Organize suas finanças direto no <span class="font-semibold text-gray-700">WhatsApp</span> em menos de 1 minuto.
+                </p>
+            </div>
+
+            <!-- Prova social -->
+            <div class="bg-green-50 rounded-2xl p-6 mb-12 text-center max-w-2xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center">
+                        <span class="text-2xl">👩‍💻</span>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-semibold text-gray-800">Luana Menezes</div>
+                        <div class="text-yellow-500 text-xl">⭐️⭐️⭐️⭐️⭐️</div>
+                        <div class="text-gray-700 italic">"Essa ferramenta mudou a minha vida! Obrigado por existirem. 💚"</div>
+                    </div>
+                </div>
+                </div>
+
+            <!-- Números de autoridade -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
+                    <div class="text-3xl mb-2">👥</div>
+                    <div class="text-2xl font-bold text-gray-800">6.253+</div>
+                    <div class="text-sm text-gray-600">usuários</div>
+                </div>
+                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
+                    <div class="text-3xl mb-2">💰</div>
+                    <div class="text-2xl font-bold text-gray-800">+R$3.0M</div>
+                    <div class="text-sm text-gray-600">gerenciados</div>
+                </div>
+                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
+                    <div class="text-3xl mb-2">📈</div>
+                    <div class="text-2xl font-bold text-gray-800">280k+</div>
+                    <div class="text-sm text-gray-600">transações</div>
+                </div>
+                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
+                    <div class="text-3xl mb-2">⭐️</div>
+                    <div class="text-2xl font-bold text-gray-800">4.9/5</div>
+                    <div class="text-sm text-gray-600">avaliação</div>
+                </div>
+            </div>
+
+            <!-- Riscos de Não Ter Controle Financeiro -->
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
+                    <span class="text-red-500">Riscos</span> de Não Ter
+                </h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
+                    um controle financeiro:
+                </h2>
+                
+                <!-- Grid de Riscos -->
+                <div class="grid grid-cols-2 gap-6 mb-10">
+                    <!-- Falta de dinheiro -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">😢</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Falta de dinheiro</h3>
+                    </div>
+                    
+                    <!-- Sonhos adiados -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">🏡</div>
+                        <h3 class="text-lg font-semibold text-gray-700">sonhos adiados</h3>
+                    </div>
+                    
+                    <!-- Cartão estourado -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">💳</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Cartão<br>estourado</h3>
+                    </div>
+                    
+                    <!-- Ansiedade e preocupação -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">😰</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Ansiedade e<br>preocupação</h3>
+                    </div>
+                </div>
+                
+                <!-- Custo mensal -->
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-red-500 mb-4">Cada mês sem controle custa caro:</h3>
+                    <div class="space-y-2 text-gray-700">
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">💰</span>
+                            <span class="font-medium">Mais dívidas;</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">💥</span>
+                            <span class="font-medium">menos paz;</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">🥺</span>
+                            <span class="font-medium">E seus sonhos ficando pra depois;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Por que usar Zapycash -->
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
+                    <span class="text-green-500">Por que você precisa</span>
+                </h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
+                    usar o Zapycash?
+                </h2>
+                
+                <!-- Grid de Benefícios -->
+                <div class="grid grid-cols-2 gap-6 mb-10">
+                    <!-- WhatsApp todos os dias -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">📱</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Porque você usa o<br>WhatsApp todos os<br>dias.</h3>
+                    </div>
+                    
+                    <!-- Paz ao olhar conta -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">😌</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Porque você merece<br>ter paz ao olhar sua<br>conta.</h3>
+                    </div>
+                    
+                    <!-- Separar pessoal do empresarial -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">💼</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Porque você precisa<br>separar o pessoal do<br>empresarial.</h3>
+                    </div>
+                    
+                    <!-- Poupar mesmo ganhando pouco -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+                        <div class="text-6xl mb-4">💰</div>
+                        <h3 class="text-lg font-semibold text-gray-700">Porque dá pra poupar<br>mesmo ganhando<br>pouco.</h3>
+                    </div>
+                </div>
+                
+                <!-- Benefícios mensais -->
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-green-500 mb-4">Cada mês com o Zapycash:</h3>
+                    <div class="space-y-2 text-gray-700">
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">💰</span>
+                            <span class="font-medium">Dinheiro sobrando no fim do mês;</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">✈️</span>
+                            <span class="font-medium">Viagens saindo do papel;</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-lg">📅</span>
+                            <span class="font-medium">Contas em dia sem aperto.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Gráfico de transformação -->
+            <div class="bg-white rounded-2xl p-8 text-center mb-12 border border-gray-200 shadow-sm">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
+                    Chegou a hora de você<br>
+                    <span class="text-green-500">mudar a sua realidade</span><br>
+                    financeira!
+                </h3>
+                
+                <!-- Gráfico de Barras -->
+                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                    <!-- Grid lines -->
+                    <div class="relative mb-6">
+                        <!-- Linhas horizontais do grid -->
+                        <div class="absolute inset-0 flex flex-col justify-between text-left text-sm text-gray-400">
+                            <div class="border-t border-dotted border-gray-300">100</div>
+                            <div class="border-t border-dotted border-gray-300">75</div>
+                            <div class="border-t border-dotted border-gray-300">50</div>
+                            <div class="border-t border-dotted border-gray-300">25</div>
+                            <div class="border-t border-dotted border-gray-300">0</div>
+                        </div>
+                        
+                        <!-- Barras -->
+                        <div class="flex justify-around items-end pt-8" style="height: 250px;">
+                            <!-- Barra 1: Você Hoje -->
+                            <div class="text-center flex flex-col items-center justify-end">
+                                <div class="bg-green-500 rounded-t-lg relative mb-2" style="width: 60px; height: 40px;">
+                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">
+                                        R$0
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Barra 2: Em 15 dias -->
+                            <div class="text-center flex flex-col items-center justify-end">
+                                <div class="bg-green-500 rounded-t-lg relative mb-2" style="width: 60px; height: 100px;">
+                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">
+                                        R$200
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Barra 3: Em 30 Dias -->
+                            <div class="text-center flex flex-col items-center justify-end">
+                                <div class="bg-green-500 rounded-t-lg relative mb-2" style="width: 60px; height: 180px;">
+                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">
+                                        R$ 400
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Labels das barras -->
+                        <div class="flex justify-around mt-4 text-gray-600 font-medium">
+                            <div class="text-center">Você Hoje</div>
+                            <div class="text-center">Em 15 dias</div>
+                            <div class="text-center">Em 30 Dias</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Textos explicativos -->
+                <div class="space-y-4 text-gray-700">
+                    <p class="text-lg font-semibold">
+                        <strong class="text-gray-800">A verdade é simples:</strong> não existe mágica, existe método<br>
+                        e ferramenta eficaz.
+                    </p>
+                    <p class="text-lg">
+                        Com organização e planejamento, o seu dinheiro passa<br>
+                        a render de verdade.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Seção de Vídeos de Depoimento -->
+            <div class="mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
+                    Veja o que dizem os
+                </h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-8">
+                    <span class="text-green-500">nossos clientes!</span> 👇
+                </h3>
+                <p class="text-center text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+                    Estavam perdidas com o dinheiro e hoje têm clareza
+                    com ajuda do Poupeai.
+                </p>
+
+                <!-- Container para os dois vídeos -->
+                <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                    <!-- Vídeo 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="aspect-video bg-black rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                            <!-- Placeholder para o primeiro vídeo -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="text-6xl mb-4">🎥</div>
+                                    <p class="text-lg font-medium">Embed do Vídeo 1</p>
+                                    <p class="text-sm opacity-75">Depoimento de Cliente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-600 text-sm">
+                                Adicione o embed do primeiro vídeo de depoimento aqui
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Vídeo 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="aspect-video bg-black rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                            <!-- Placeholder para o segundo vídeo -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="text-6xl mb-4">🎥</div>
+                                    <p class="text-lg font-medium">Embed do Vídeo 2</p>
+                                    <p class="text-sm opacity-75">Depoimento de Cliente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-600 text-sm">
+                                Adicione o embed do segundo vídeo de depoimento aqui
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recapitulando o que você recebe -->
+            <div class="bg-blue-50 rounded-2xl p-8 mb-12">
+                <h3 class="text-3xl font-bold text-blue-800 text-center mb-8">📦 Recapitulando o que você recebe:</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Assistente financeira no WhatsApp</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Controle de entradas e saídas</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Relatórios mensais</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Gerente de contas (plano anual)</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Suporte humanizado</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Acesso seguro e prático</span>
+                    </div>
+                    <div class="flex items-center space-x-3 md:col-span-2 justify-center">
+                        <span class="text-2xl">✅</span>
+                        <span class="text-blue-700 font-semibold">Painel com gráficos e metas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Planos Redesenhada -->
+            <div class="mb-12">
+                <!-- Título Principal -->
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        <span class="text-green-500">Apenas hoje</span> você terá a<br>
+                        oportunidade de acessar tudo isso<br>
+                        por apenas...
+                    </h2>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        Escolha seu plano ideal:
+                    </h3>
+                    
+                    <!-- Timer -->
+                    <div class="bg-gray-100 rounded-xl p-4 max-w-sm mx-auto mb-6">
+                        <div class="text-gray-600 text-sm mb-2">Oferta por tempo limitado:</div>
+                        <div id="countdown-timer" class="text-2xl font-mono font-bold text-gray-800">
+                            09:24
+                        </div>
+                    </div>
+                    
+                    <!-- Seta para baixo -->
+                    <div class="text-6xl text-gray-800 mb-8">↓</div>
+                </div>
+                
+                <!-- Planos -->
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <!-- Plano Pessoal -->
+                    <div class="bg-green-100 rounded-2xl p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                                Plano Pessoal 💚
+                            </h3>
+                            <p class="text-gray-600">Ideal para controlar as finanças da casa!</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Plano Mensal -->
+                            <div class="bg-white rounded-xl p-4">
+                                <div class="bg-green-500 text-white text-center py-2 rounded-lg mb-4 font-semibold">
+                                    Plano Básico
+                                </div>
+                                <div class="text-center mb-4">
+                                    <h4 class="text-lg font-bold text-gray-600 mb-2">Plano Mensal</h4>
+                                    <div class="text-3xl font-bold text-gray-800 mb-1">R$29,90/mês</div>
+                                    <div class="text-sm text-gray-600">Pix ou cartão</div>
+                                </div>
+                                <a 
+                                    href="https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?"
+                                    target="_blank"
+                                    class="block w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors text-center"
+                                >
+                                    Quero assinar!
+                                </a>
+                            </div>
+                            
+                            <!-- Plano Anual -->
+                            <div class="bg-green-200 rounded-xl p-4 border-2 border-green-400">
+                                <div class="bg-green-600 text-white text-center py-2 rounded-lg mb-4 font-semibold">
+                                    Mais vendido!
+                                </div>
+                                <div class="text-center mb-4">
+                                    <h4 class="text-lg font-bold text-green-600 mb-2">Plano Anual</h4>
+                                    <div class="text-sm text-gray-600 mb-1">12x de</div>
+                                    <div class="text-3xl font-bold text-green-600 mb-1">R$8,08/mês</div>
+                                    <div class="text-sm text-gray-600">ou R$97,00/ano</div>
+                                </div>
+                                <a 
+                                    href="https://checkout.perfectpay.com.br/pay/PPU38CPON1T?"
+                                    target="_blank"
+                                    class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-colors text-center"
+                                >
+                                    Quero assinar!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plano Pessoal + Profissional -->
+                    <div class="bg-blue-100 rounded-2xl p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                                Pessoal + Profissional 💼
+                            </h3>
+                            <p class="text-gray-600">Ideal para separar os gastos da vida pessoal e profissional, 2 em 1.</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Plano Mensal -->
+                            <div class="bg-white rounded-xl p-4">
+                                <div class="text-center mb-4">
+                                    <h4 class="text-lg font-bold text-gray-600 mb-2">Plano Mensal</h4>
+                                    <div class="text-3xl font-bold text-gray-800 mb-1">R$37,90/mês</div>
+                                    <div class="text-sm text-gray-600">Pix ou cartão</div>
+                                </div>
+                                <a 
+                                    href="https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?"
+                                    target="_blank"
+                                    class="block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors text-center"
+                                >
+                                    Quero assinar!
+                                </a>
+                            </div>
+                            
+                            <!-- Plano Anual -->
+                            <div class="bg-blue-200 rounded-xl p-4 border-2 border-blue-400">
+                                <div class="text-center mb-4">
+                                    <h4 class="text-lg font-bold text-blue-600 mb-2">Plano Anual</h4>
+                                    <div class="text-sm text-gray-600 mb-1">12x de</div>
+                                    <div class="text-3xl font-bold text-blue-600 mb-1">R$12,25/mês</div>
+                                    <div class="text-sm text-gray-600">Ou R$147,00/ano</div>
+                                </div>
+                                <a 
+                                    href="https://checkout.perfectpay.com.br/pay/PPU38CPON1T?"
+                                    target="_blank"
+                                    class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors text-center"
+                                >
+                                    Quero assinar!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garantia de 7 dias -->
+            <div class="bg-blue-50 rounded-2xl p-8 text-center mb-12">
+                <div class="text-6xl mb-6">🛡</div>
+                <h3 class="text-3xl font-bold text-blue-800 mb-4">Garantia de 7 dias</h3>
+                <p class="text-xl text-blue-700 mb-6 max-w-2xl mx-auto">
+                    <strong>Compre sem risco!</strong><br>
+                    Experimente o Zapycash por 7 dias. Se não gostar ou achar que não atendeu suas expectativas, 
+                    devolvemos 100% do seu investimento.
+                </p>
+                
+                <!-- Depoimento da garantia -->
+                <div class="bg-white rounded-xl p-6 max-w-3xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🎬</span>
+                        </div>
+                        <div class="text-left flex-1">
+                            <div class="text-yellow-500 text-xl mb-2">⭐️⭐️⭐️⭐️⭐️</div>
+                            <p class="text-gray-700 italic">
+                                "Sou videomaker e organizei a minha empresa e a minha vida pessoal com o Zapycash. 
+                                Nunca mais quero saber de planilhas no Excel. Muito top e muito intuitivo."
+                            </p>
+                            <div class="font-semibold text-gray-800 mt-2">— Mário Gois</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carrossel de Depoimentos -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-center mb-8">🗣 Depoimentos de clientes:</h3>
+                <div class="relative overflow-hidden">
+                    <div id="testimonials-carousel" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Os depoimentos serão inseridos via JavaScript -->
+                    </div>
+                    <button onclick="previousTestimonial()" class="carousel-arrow absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50">
+                        <span class="text-xl">←</span>
+                    </button>
+                    <button onclick="nextTestimonial()" class="carousel-arrow absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50">
+                        <span class="text-xl">→</span>
+                    </button>
+                    <div class="flex justify-center mt-4 space-x-2" id="testimonial-dots">
+                        <!-- Dots serão inseridos via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Seção -->
+            <div class="bg-white py-16">
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-8">❓ Dúvidas Frequentes</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item border border-gray-200 rounded-lg">
+                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
+                                Como o Zapycash se conecta ao WhatsApp?
+                                <span class="float-right">+</span>
+                            </button>
+                            <div class="faq-answer hidden p-4 border-t text-gray-600">
+                                O Zapycash funciona como um bot inteligente no WhatsApp. Você simplesmente envia mensagens como "ganhei R$1000" ou "gastei R$50 no mercado" e tudo é registrado automaticamente.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item border border-gray-200 rounded-lg">
+                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
+                                Preciso entender de tecnologia?
+                                <span class="float-right">+</span>
+                            </button>
+                            <div class="faq-answer hidden p-4 border-t text-gray-600">
+                                Não! Se você sabe usar WhatsApp, você sabe usar o Zapycash. É tão simples quanto enviar uma mensagem para um amigo.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item border border-gray-200 rounded-lg">
+                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
+                                É seguro usar o Zapycash?
+                                <span class="float-right">+</span>
+                            </button>
+                            <div class="faq-answer hidden p-4 border-t text-gray-600">
+                                Absolutamente! Usamos criptografia de ponta e não temos acesso aos seus dados bancários. Trabalhamos apenas com as informações que você escolhe compartilhar.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item border border-gray-200 rounded-lg">
+                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
+                                Posso cancelar a qualquer momento?
+                                <span class="float-right">+</span>
+                            </button>
+                            <div class="faq-answer hidden p-4 border-t text-gray-600">
+                                Sim! Você pode cancelar sua assinatura a qualquer momento, sem burocracias ou taxas de cancelamento.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item border border-gray-200 rounded-lg">
+                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
+                                O plano anual cobra tudo de uma vez?
+                                <span class="float-right">+</span>
+                            </button>
+                            <div class="faq-answer hidden p-4 border-t text-gray-600">
+                                Sim, o plano anual é cobrado uma única vez e você economiza mais de 70% comparado ao plano mensal. É a opção mais vantajosa!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="assets/js/supabase-config.js"></script>
+    <script src="assets/js/quiz-engine.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/image-tester.js"></script>
+</body>
+</html>
