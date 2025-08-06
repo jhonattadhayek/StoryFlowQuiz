@@ -1,0 +1,26 @@
+{
+  "name": "quiz-zapycash",
+  "version": "1.0.0",
+  "description": "Quiz interativo para diagnóstico financeiro com integração WhatsApp",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -o",
+    "build": "echo 'Build concluído - aplicação estática'",
+    "start": "npx http-server . -p 8080"
+  },
+  "keywords": [
+    "quiz",
+    "finanças",
+    "zapycash",
+    "whatsapp",
+    "supabase"
+  ],
+  "author": "Jhonatta Hayek",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
