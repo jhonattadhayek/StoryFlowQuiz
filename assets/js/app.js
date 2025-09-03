@@ -9,8 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Controle de telas
 function showScreen(screenId) {
+    console.log(`🖥️ Mostrando tela: ${screenId}`)
+    
     // Esconder todas as telas
     const screens = document.querySelectorAll('.screen')
+    console.log(`📱 Encontradas ${screens.length} telas`)
     screens.forEach(screen => {
         screen.classList.add('hidden')
     })
@@ -19,6 +22,9 @@ function showScreen(screenId) {
     const targetScreen = document.getElementById(screenId)
     if (targetScreen) {
         targetScreen.classList.remove('hidden')
+        console.log(`✅ Tela ${screenId} mostrada`)
+    } else {
+        console.error(`❌ Tela ${screenId} não encontrada`)
     }
     
     // Scroll para o topo
@@ -32,9 +38,17 @@ function showScreen(screenId) {
 
 // Iniciar quiz
 function startQuiz() {
-    quizEngine = new QuizEngine()
-    showScreen('quiz-screen')
-    displayCurrentQuestion()
+    console.log('🚀 Iniciando quiz...')
+    try {
+        quizEngine = new QuizEngine()
+        console.log('✅ QuizEngine criado:', quizEngine)
+        showScreen('quiz-screen')
+        console.log('✅ Tela do quiz mostrada')
+        displayCurrentQuestion()
+        console.log('✅ Primeira pergunta exibida')
+    } catch (error) {
+        console.error('❌ Erro ao iniciar quiz:', error)
+    }
 }
 
 // Exibir pergunta atual
@@ -71,7 +85,7 @@ function displayCurrentQuestion() {
         
         const questionTextEl = document.getElementById('question-text')
         if (questionTextEl) {
-            questionTextEl.textContent = question.text
+            questionTextEl.innerHTML = question.text
         }
         
         // Verificar se é a pergunta sobre o saldo (q7) para renderizar com gráfico

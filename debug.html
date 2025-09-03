@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Debug Quiz - StoryFlow</h1>
+        
+        <div class="bg-white rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Teste de Funções</h2>
+            <div class="space-y-4">
+                <button onclick="testStartQuiz()" class="bg-blue-500 text-white px-4 py-2 rounded">
+                    Testar startQuiz()
+                </button>
+                <button onclick="testShowScreen()" class="bg-green-500 text-white px-4 py-2 rounded">
+                    Testar showScreen()
+                </button>
+                <button onclick="testQuizEngine()" class="bg-purple-500 text-white px-4 py-2 rounded">
+                    Testar QuizEngine
+                </button>
+                <button onclick="testImages()" class="bg-orange-500 text-white px-4 py-2 rounded">
+                    Testar Imagens
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Console Log</h2>
+            <div id="console-log" class="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm h-64 overflow-y-auto">
+                <!-- Logs aparecerão aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/supabase-config.js"></script>
+    <script src="assets/js/quiz-engine.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/image-tester.js"></script>
+    
+    <script>
+        // Função para log personalizado
+        function log(message) {
+            const consoleDiv = document.getElementById('console-log');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        // Teste das funções
+        function testStartQuiz() {
+            log('🧪 Testando startQuiz()...');
+            try {
+                if (typeof startQuiz === 'function') {
+                    log('✅ Função startQuiz encontrada');
+                    startQuiz();
+                    log('✅ startQuiz() executada com sucesso');
+                } else {
+                    log('❌ Função startQuiz não encontrada');
+                }
+            } catch (error) {
+                log(`❌ Erro em startQuiz(): ${error.message}`);
+            }
+        }
+        
+        function testShowScreen() {
+            log('🧪 Testando showScreen()...');
+            try {
+                if (typeof showScreen === 'function') {
+                    log('✅ Função showScreen encontrada');
+                    showScreen('quiz-screen');
+                    log('✅ showScreen() executada com sucesso');
+                } else {
+                    log('❌ Função showScreen não encontrada');
+                }
+            } catch (error) {
+                log(`❌ Erro em showScreen(): ${error.message}`);
+            }
+        }
+        
+        function testQuizEngine() {
+            log('🧪 Testando QuizEngine...');
+            try {
+                if (typeof QuizEngine === 'function') {
+                    log('✅ Classe QuizEngine encontrada');
+                    const engine = new QuizEngine();
+                    log('✅ QuizEngine instanciada com sucesso');
+                    log(`Session ID: ${engine.sessionId}`);
+                    log(`Total de perguntas: ${engine.totalQuestions}`);
+                } else {
+                    log('❌ Classe QuizEngine não encontrada');
+                }
+            } catch (error) {
+                log(`❌ Erro em QuizEngine: ${error.message}`);
+            }
+        }
+        
+        function testImages() {
+            log('🧪 Testando imagens...');
+            try {
+                if (typeof checkLocalImages === 'function') {
+                    log('✅ Função checkLocalImages encontrada');
+                    checkLocalImages();
+                } else {
+                    log('❌ Função checkLocalImages não encontrada');
+                }
+            } catch (error) {
+                log(`❌ Erro ao testar imagens: ${error.message}`);
+            }
+        }
+        
+        // Log inicial
+        log('🚀 Debug Quiz iniciado');
+        log('Verificando dependências...');
+        
+        // Verificar se todas as funções estão disponíveis
+        const functions = ['startQuiz', 'showScreen', 'QuizEngine', 'getSessionId', 'trackEvent'];
+        functions.forEach(func => {
+            if (typeof window[func] === 'function') {
+                log(`✅ ${func} disponível`);
+            } else {
+                log(`❌ ${func} não disponível`);
+            }
+        });
+    </script>
+</body>
+</html>
