@@ -8,6 +8,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -157,15 +160,7 @@
     <!-- Tela 1: Landing Page -->
     <section id="landing-screen" class="screen min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8">
         <div class="max-w-lg w-full text-center space-y-8">
-            <!-- Logo -->
-            <div class="flex justify-center mb-8">
-                <img 
-                    src="assets/images/logo-zapycash.svg" 
-                    alt="StoryFlow" 
-                    class="w-40 h-16 object-contain"
-                    onerror="this.style.display='none'"
-                >
-            </div>
+
             
             <!-- Título Principal -->
             <div class="space-y-6">
@@ -218,15 +213,7 @@
 
     <!-- Tela 2: Quiz -->
     <section id="quiz-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-md w-full">
@@ -274,15 +261,7 @@
 
     <!-- Tela 3: Análise -->
     <section id="analysis-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-md w-full text-center space-y-8">
@@ -309,15 +288,7 @@
 
     <!-- Tela 4: Diagnóstico -->
     <section id="diagnosis-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-md w-full space-y-6">
@@ -352,15 +323,7 @@
 
     <!-- Tela 5: Vídeos -->
     <section id="videos-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-lg w-full space-y-6">
@@ -376,12 +339,13 @@
 
                 <!-- Prova Social 1 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">📊</div>
-                            <p class="text-gray-600 font-medium">Print das métricas (2.825 views)</p>
-                            <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg">▶ Ver Resultado</button>
-                        </div>
+                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                        <img 
+                            src="assets/images/prova social 1.jpeg" 
+                            alt="Prova social - Aumento de visualizações de 500 para 2.825 views" 
+                            class="w-full h-full object-cover"
+                            onerror="this.style.display='none'"
+                        >
                     </div>
                     <p class="text-gray-500">
                         🚀 "Antes, com 10 mil seguidores, meus Stories batiam no máximo 500 views. Depois do método, um único Story passou de 2.800 visualizações. Mais de 5x mais alcance sem precisar de anúncios."
@@ -390,12 +354,13 @@
 
                 <!-- Prova Social 2 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">✨</div>
-                            <p class="text-gray-600 font-medium">Depoimento da cliente</p>
-                            <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg">▶ Ver Depoimento</button>
-                        </div>
+                    <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                        <img 
+                            src="assets/images/prova social 2.jpeg" 
+                            alt="Prova social - Depoimento da cliente" 
+                            class="w-full h-full object-cover"
+                            onerror="this.style.display='none'"
+                        >
                     </div>
                     <p class="text-gray-500">
                         ✨ "Eu travava toda semana sem saber o que postar. Com o StoryFlow™️, consegui organizar meus Stories, montar meu calendário e ainda gerar novas ideias que facilitaram meu trabalho. Agora eu posto com clareza e consistência sem perder tempo."
@@ -424,15 +389,7 @@
 
     <!-- Tela 6: Seleção de Perfil -->
     <section id="profile-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-md w-full space-y-6">
@@ -440,74 +397,50 @@
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">
                         📊 "Veja onde você está hoje em relação ao seu concorrente"
                     </h2>
-                    <p class="text-gray-500">
-                        Escolha a opção que mais faz <span class="font-semibold text-gray-700">sentido</span> para você
-                    </p>
                 </div>
 
                 <!-- Gráfico de Comparação -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
-                    <div class="text-center mb-4">
-                        <h3 class="text-lg font-semibold text-gray-700">Hoje (antes do StoryFlow):</h3>
+                    <div class="text-center mb-6">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Comparação: Hoje vs. Futuro</h3>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-red-500 font-semibold">Você (linha vermelha)</span>
-                            <span class="text-gray-500">→ inconsistente, travado, perdendo alcance</span>
+                    
+                    <!-- Gráfico 1: Hoje -->
+                    <div class="mb-6">
+                        <h4 class="text-md font-medium text-gray-600 mb-3 text-center">Hoje (antes do StoryFlow):</h4>
+                        <div class="chart-container rounded-lg p-4">
+                            <canvas id="chart-hoje" width="400" height="200"></canvas>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 font-semibold">Concorrente (linha cinza)</span>
-                            <span class="text-gray-500">→ aparece mais, ganha autoridade</span>
+                    </div>
+                    
+                    <!-- Gráfico 2: Futuro -->
+                    <div class="mb-4">
+                        <h4 class="text-md font-medium text-gray-600 mb-3 text-center">Futuro (com StoryFlow):</h4>
+                        <div class="chart-container rounded-lg p-4">
+                            <canvas id="chart-futuro" width="400" height="200"></canvas>
                         </div>
+                    </div>
+                    
+                    <!-- Legenda -->
+                    <div class="text-sm text-gray-500 text-center mt-4">
+                        <p>📊 <span class="font-medium">Você</span> vs. <span class="font-medium">Concorrente</span></p>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <button 
-                        onclick="selectProfile('personal')"
-                        class="profile-option w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-left transition-all duration-200 group shadow-lg"
-                    >
-                        <div class="flex items-center space-x-4">
-                            <div class="text-4xl">📱</div>
-                            <div>
-                                <h3 class="font-semibold text-lg">Criador de conteúdo</h3>
-                                <p class="text-gray-500 group-hover:text-white">
-                                    Para aumentar engajamento e autoridade no seu nicho
-                                </p>
-                            </div>
-                        </div>
-                    </button>
-
-                    <button 
-                        onclick="selectProfile('business')"
-                        class="profile-option w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-left transition-all duration-200 group shadow-lg"
-                    >
-                        <div class="flex items-center space-x-4">
-                            <div class="text-4xl">💼</div>
-                            <div>
-                                <h3 class="font-semibold text-lg">Negócio/Empreendedor</h3>
-                                <p class="text-gray-500 group-hover:text-white">
-                                    Para vender mais e construir autoridade
-                                </p>
-                            </div>
-                        </div>
-                    </button>
-                </div>
+                <!-- Botão prosseguir -->
+                <button
+                    onclick="proceedToProductInfo()"
+                    class="w-full bg-primary hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-2xl text-lg transition-colors duration-200 shadow-lg"
+                >
+                    👉 Quero sair da estagnação agora
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Tela 7: Loading -->
     <section id="loading-screen" class="screen hidden min-h-screen bg-white flex flex-col px-4 py-8">
-        <!-- Logo -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="assets/images/logo-zapycash.svg" 
-                alt="StoryFlow" 
-                class="w-32 h-12 object-contain"
-                onerror="this.style.display='none'"
-            >
-        </div>
+
 
         <div class="flex-1 flex items-center justify-center">
             <div class="max-w-md w-full text-center space-y-8">
@@ -532,501 +465,101 @@
         </div>
     </section>
 
-    <!-- Tela 8: Checkout Final StoryFlow -->
-    <section id="plans-screen" class="screen hidden min-h-screen bg-white px-4 py-8">
+    <!-- Tela 8: Informações do Produto (Etapa 1) -->
+    <section id="product-info-screen" class="screen hidden min-h-screen bg-white px-4 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- Logo -->
-            <div class="flex justify-center mb-8">
-                <img 
-                    src="assets/images/logo-zapycash.svg" 
-                    alt="Zapycash" 
-                    class="w-32 h-12 object-contain"
-                    onerror="this.style.display='none'"
-                >
-            </div>
-
-            <!-- Headline principal -->
+            <!-- Título -->
             <div class="text-center mb-12">
-                <div class="flex justify-center mb-6">
-                    <img 
-                        src="assets/images/img-boneca02.png" 
-                        alt="Especialista em Stories" 
-                        class="w-32 h-32 md:w-40 md:h-40 object-contain"
-                        onerror="this.style.display='none'"
-                    >
-                </div>
-                
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    Chegou a hora de destravar seus Stories e transformar execução em resultado.
+                    Chegou a hora de destravar seus Stories
                 </h1>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    O <span class="font-semibold text-gray-700">StoryFlow™️</span> custa apenas R$37. Não é curso longo, nem assinatura cara. É o atalho simples para você ter Stories prontos todos os dias e transformar seguidores em clientes.
-                </p>
             </div>
 
-            <!-- Prova social -->
-            <div class="bg-green-50 rounded-2xl p-6 mb-12 text-center max-w-2xl mx-auto">
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <div class="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center">
-                        <span class="text-2xl">👩‍💻</span>
-                    </div>
-                    <div class="text-left">
-                        <div class="font-semibold text-gray-800">Cliente StoryFlow</div>
-                        <div class="text-yellow-500 text-xl">⭐️⭐️⭐️⭐️⭐️</div>
-                        <div class="text-gray-700 italic">"Eu travava toda semana sem saber o que postar. Com o StoryFlow™️, consegui organizar meus Stories e agora posto com clareza e consistência sem perder tempo."</div>
-                    </div>
-                </div>
-                </div>
-
-            <!-- Números de autoridade -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
-                    <div class="text-3xl mb-2">👥</div>
-                    <div class="text-2xl font-bold text-gray-800">2.500+</div>
-                    <div class="text-sm text-gray-600">usuários</div>
-                </div>
-                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
-                    <div class="text-3xl mb-2">📱</div>
-                    <div class="text-2xl font-bold text-gray-800">50k+</div>
-                    <div class="text-sm text-gray-600">stories criados</div>
-                </div>
-                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
-                    <div class="text-3xl mb-2">📈</div>
-                    <div class="text-2xl font-bold text-gray-800">5x</div>
-                    <div class="text-sm text-gray-600">mais engajamento</div>
-                </div>
-                <div class="authority-card bg-white border-2 border-green-200 rounded-2xl p-6 text-center cursor-pointer">
-                    <div class="text-3xl mb-2">⭐️</div>
-                    <div class="text-2xl font-bold text-gray-800">4.9/5</div>
-                    <div class="text-sm text-gray-600">avaliação</div>
-                </div>
-            </div>
-
-            <!-- Riscos de Não Ter Sistema de Stories -->
-            <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
-                    <span class="text-red-500">Riscos</span> de Continuar
-                </h2>
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
-                    sem sistema nos Stories:
-                </h2>
+            <!-- Benefícios -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">O que você recebe:</h2>
                 
-                <!-- Grid de Riscos -->
-                <div class="grid grid-cols-2 gap-6 mb-10">
-                    <!-- Perda de alcance -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">📉</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Perda de<br>alcance</h3>
-                    </div>
-                    
-                    <!-- Concorrentes na frente -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">🏃‍♂️</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Concorrentes<br>na frente</h3>
-                    </div>
-                    
-                    <!-- Baixo engajamento -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">😔</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Baixo<br>engajamento</h3>
-                    </div>
-                    
-                    <!-- Perda de vendas -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">💸</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Perda de<br>vendas</h3>
-                    </div>
-                </div>
-                
-                <!-- Custo mensal -->
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-red-500 mb-4">Cada dia sem sistema custa caro:</h3>
-                    <div class="space-y-2 text-gray-700">
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">📱</span>
-                            <span class="font-medium">Menos alcance;</span>
-                        </div>
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">😤</span>
-                            <span class="font-medium">mais frustração;</span>
-                        </div>
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">💔</span>
-                            <span class="font-medium">E seus concorrentes crescendo;</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Por que usar StoryFlow -->
-            <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
-                    <span class="text-green-500">Por que você precisa</span>
-                </h2>
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
-                    usar o StoryFlow™️?
-                </h2>
-                
-                <!-- Grid de Benefícios -->
-                <div class="grid grid-cols-2 gap-6 mb-10">
-                    <!-- Sistema pronto -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">⚡</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Porque você precisa<br>de um sistema<br>pronto.</h3>
-                    </div>
-                    
-                    <!-- Clareza na comunicação -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">🎯</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Porque você merece<br>ter clareza na<br>comunicação.</h3>
-                    </div>
-                    
-                    <!-- Consistência nos posts -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">📅</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Porque você precisa<br>de consistência<br>nos posts.</h3>
-                    </div>
-                    
-                    <!-- Vender mais -->
-                    <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-                        <div class="text-6xl mb-4">💰</div>
-                        <h3 class="text-lg font-semibold text-gray-700">Porque você quer<br>vender mais e<br>crescer.</h3>
-                    </div>
-                </div>
-                
-                <!-- Benefícios com StoryFlow -->
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-green-500 mb-4">Com o StoryFlow™️:</h3>
-                    <div class="space-y-2 text-gray-700">
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">📱</span>
-                            <span class="font-medium">Stories prontos todos os dias;</span>
-                        </div>
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">📈</span>
-                            <span class="font-medium">Mais engajamento e alcance;</span>
-                        </div>
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="text-lg">💸</span>
-                            <span class="font-medium">Mais vendas e autoridade.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- Gráfico de transformação -->
-            <div class="bg-white rounded-2xl p-8 text-center mb-12 border border-gray-200 shadow-sm">
-                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
-                    Chegou a hora de você<br>
-                    <span class="text-green-500">destravar seus Stories</span><br>
-                    e ultrapassar seus concorrentes!
-                </h3>
-                
-                <!-- Gráfico de Comparação -->
-                <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                    <div class="grid grid-cols-2 gap-8">
-                        <!-- Antes -->
-                        <div class="text-center">
-                            <h4 class="text-lg font-bold text-red-500 mb-4">Hoje (antes do StoryFlow):</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-red-500 font-semibold">Você (linha vermelha)</span>
-                                    <span class="text-gray-500">→ inconsistente, travado, perdendo alcance</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-500 font-semibold">Concorrente (linha cinza)</span>
-                                    <span class="text-gray-500">→ aparece mais, ganha autoridade</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Depois -->
-                        <div class="text-center">
-                            <h4 class="text-lg font-bold text-green-500 mb-4">Futuro (com StoryFlow):</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-green-500 font-semibold">Você (linha verde)</span>
-                                    <span class="text-gray-500">→ clareza, consistência, vendas</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-500 font-semibold">Concorrente</span>
-                                    <span class="text-gray-500">→ ficando para trás</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Textos explicativos -->
-                <div class="space-y-4 text-gray-700">
-                    <p class="text-lg font-semibold">
-                        <strong class="text-gray-800">Sem sistema, você continua travado.</strong><br>
-                        Com o StoryFlow™️, você passa de espectador a protagonista e conquista o espaço que merece.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Seção de Vídeos de Depoimento -->
-            <div class="mb-12">
-                <h3 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
-                    Veja o que dizem os
-                </h3>
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-8">
-                    <span class="text-green-500">nossos clientes!</span> 👇
-                </h3>
-                <p class="text-center text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-                    Estavam travados nos Stories e hoje têm clareza
-                    com ajuda do StoryFlow™️.
-                </p>
-
-                <!-- Container para os dois vídeos -->
-                <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-                    <!-- Vídeo 1 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg">
-                        <div class="aspect-video bg-black rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                            <!-- Placeholder para o primeiro vídeo -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
-                                <div class="text-center text-white">
-                                    <div class="text-6xl mb-4">🎥</div>
-                                    <p class="text-lg font-medium">Embed do Vídeo 1</p>
-                                    <p class="text-sm opacity-75">Depoimento de Cliente</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <p class="text-gray-600 text-sm">
-                                Adicione o embed do primeiro vídeo de depoimento aqui
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Vídeo 2 -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg">
-                        <div class="aspect-video bg-black rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                            <!-- Placeholder para o segundo vídeo -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
-                                <div class="text-center text-white">
-                                    <div class="text-6xl mb-4">🎥</div>
-                                    <p class="text-lg font-medium">Embed do Vídeo 2</p>
-                                    <p class="text-sm opacity-75">Depoimento de Cliente</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <p class="text-gray-600 text-sm">
-                                Adicione o embed do segundo vídeo de depoimento aqui
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recapitulando o que você recebe -->
-            <div class="bg-blue-50 rounded-2xl p-8 mb-12">
-                <h3 class="text-3xl font-bold text-blue-800 text-center mb-8">📦 Recapitulando o que você recebe:</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="flex items-center space-x-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start space-x-4">
                         <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Sistema StoryFlow™️ completo</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Templates de Stories prontos</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Estratégias de engajamento</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Calendário de conteúdo</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Suporte e acompanhamento</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Acesso vitalício</span>
-                    </div>
-                    <div class="flex items-center space-x-3 md:col-span-2 justify-center">
-                        <span class="text-2xl">✅</span>
-                        <span class="text-blue-700 font-semibold">Garantia de 7 dias</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Seção de Planos Redesenhada -->
-            <div class="mb-12">
-                <!-- Título Principal -->
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                        <span class="text-green-500">Apenas hoje</span> você terá a<br>
-                        oportunidade de acessar tudo isso<br>
-                        por apenas R$37!
-                    </h2>
-                    
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
-                        ➡️ Aqui entra o vídeo que você vai adicionar.
-                    </h3>
-                    
-                    <!-- Timer -->
-                    <div class="bg-gray-100 rounded-xl p-4 max-w-sm mx-auto mb-6">
-                        <div class="text-gray-600 text-sm mb-2">Oferta por tempo limitado:</div>
-                        <div id="countdown-timer" class="text-2xl font-mono font-bold text-gray-800">
-                            09:24
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Sistema de 5 perguntas que gera Stories prontos</h3>
                         </div>
                     </div>
                     
-                    <!-- Seta para baixo -->
-                    <div class="text-6xl text-gray-800 mb-8">↓</div>
-                </div>
-                
-                <!-- Plano Único -->
-                <div class="max-w-2xl mx-auto">
-                    <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 text-white text-center">
-                        <div class="text-6xl mb-6">🚀</div>
-                        <h3 class="text-3xl font-bold mb-4">StoryFlow™️</h3>
-                        <p class="text-xl mb-6 opacity-90">Sistema completo para destravar seus Stories</p>
-                        
-                        <div class="bg-white bg-opacity-20 rounded-xl p-6 mb-6">
-                            <div class="text-4xl font-bold mb-2">R$ 37</div>
-                            <div class="text-lg opacity-90">Pagamento único</div>
-                            <div class="text-sm opacity-75 mt-2">Acesso vitalício</div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl">✅</span>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Templates testados para vender mais</h3>
                         </div>
-                        
-                        <a 
-                            href="https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?"
-                            target="_blank"
-                            class="block w-full bg-white text-green-600 hover:bg-gray-100 font-bold py-4 px-6 rounded-xl text-xl transition-colors duration-200 mb-4"
-                        >
-                            👉 Quero destravar meus Stories agora
-                        </a>
-                        
-                        <div class="text-sm opacity-90">
-                            ✅ Acesso imediato<br>
-                            ✅ Garantia de 7 dias<br>
-                            ✅ Suporte completo
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl">✅</span>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Scripts que geram respostas reais</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl">✅</span>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Acesso vitalício por apenas R$37</h3>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Garantia de 7 dias -->
-            <div class="bg-blue-50 rounded-2xl p-8 text-center mb-12">
-                <div class="text-6xl mb-6">🛡</div>
-                <h3 class="text-3xl font-bold text-blue-800 mb-4">Garantia de 7 dias</h3>
-                <p class="text-xl text-blue-700 mb-6 max-w-2xl mx-auto">
-                    <strong>Compre sem risco!</strong><br>
-                    Experimente o StoryFlow™️ por 7 dias. Se não gostar ou achar que não atendeu suas expectativas, 
-                    devolvemos 100% do seu investimento.
-                </p>
-                
-                <!-- Depoimento da garantia -->
-                <div class="bg-white rounded-xl p-6 max-w-3xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-center gap-4">
-                        <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center">
-                            <span class="text-2xl">📱</span>
-                        </div>
-                        <div class="text-left flex-1">
-                            <div class="text-yellow-500 text-xl mb-2">⭐️⭐️⭐️⭐️⭐️</div>
-                            <p class="text-gray-700 italic">
-                                "Eu travava toda semana sem saber o que postar. Com o StoryFlow™️, consegui organizar meus Stories, montar meu calendário e ainda gerar novas ideias que facilitaram meu trabalho. Agora eu posto com clareza e consistência sem perder tempo."
-                            </p>
-                            <div class="font-semibold text-gray-800 mt-2">— Cliente StoryFlow</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carrossel de Depoimentos -->
-            <div class="mb-12">
-                <h3 class="text-3xl font-bold text-center mb-8">🗣 Depoimentos de clientes:</h3>
-                <div class="relative overflow-hidden">
-                    <div id="testimonials-carousel" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Os depoimentos serão inseridos via JavaScript -->
-                    </div>
-                    <button onclick="previousTestimonial()" class="carousel-arrow absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50">
-                        <span class="text-xl">←</span>
-                    </button>
-                    <button onclick="nextTestimonial()" class="carousel-arrow absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50">
-                        <span class="text-xl">→</span>
-                    </button>
-                    <div class="flex justify-center mt-4 space-x-2" id="testimonial-dots">
-                        <!-- Dots serão inseridos via JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Seção -->
-            <div class="bg-white py-16">
-                <div class="max-w-2xl mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-8">❓ Dúvidas Frequentes</h2>
-                    
-                    <div class="space-y-4">
-                        <div class="faq-item border border-gray-200 rounded-lg">
-                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
-                                Como funciona o StoryFlow™️?
-                                <span class="float-right">+</span>
-                            </button>
-                            <div class="faq-answer hidden p-4 border-t text-gray-600">
-                                O StoryFlow™️ é um sistema que transforma 5 respostas rápidas em Stories prontos, persuasivos e estratégicos. Você responde algumas perguntas e recebe conteúdo pronto para postar em minutos.
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item border border-gray-200 rounded-lg">
-                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
-                                Preciso entender de marketing digital?
-                                <span class="float-right">+</span>
-                            </button>
-                            <div class="faq-answer hidden p-4 border-t text-gray-600">
-                                Não! O StoryFlow™️ foi criado para ser simples e prático. Se você sabe usar Instagram, você consegue usar o sistema. Tudo é explicado passo a passo.
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item border border-gray-200 rounded-lg">
-                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
-                                Quanto tempo leva para ver resultados?
-                                <span class="float-right">+</span>
-                            </button>
-                            <div class="faq-answer hidden p-4 border-t text-gray-600">
-                                Os resultados podem aparecer já nas primeiras semanas. Clientes relatam aumento de 5x no engajamento e mais de 2.800 views em um único Story após aplicar o sistema.
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item border border-gray-200 rounded-lg">
-                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
-                                Posso usar para qualquer tipo de negócio?
-                                <span class="float-right">+</span>
-                            </button>
-                            <div class="faq-answer hidden p-4 border-t text-gray-600">
-                                Sim! O StoryFlow™️ funciona para prestadores de serviço, criadores de conteúdo, negócios locais e qualquer pessoa que queira melhorar seus Stories no Instagram.
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item border border-gray-200 rounded-lg">
-                            <button class="faq-question w-full text-left p-4 font-semibold hover:bg-gray-50" onclick="toggleFAQ(this)">
-                                É um pagamento único mesmo?
-                                <span class="float-right">+</span>
-                            </button>
-                            <div class="faq-answer hidden p-4 border-t text-gray-600">
-                                Sim! Por apenas R$37 você tem acesso vitalício ao StoryFlow™️. Não é assinatura, não tem mensalidade. É um investimento único para destravar seus Stories para sempre.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Botão prosseguir -->
+            <div class="text-center">
+                <button
+                    onclick="proceedToVideoSales()"
+                    class="bg-primary hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-2xl text-lg transition-colors duration-200 shadow-lg"
+                >
+                    👉 Quero ver como funciona
+                </button>
             </div>
         </div>
     </section>
 
+    <!-- Tela 9: Vídeo de Vendas e Compra (Etapa 2) -->
+    <section id="plans-screen" class="screen hidden min-h-screen bg-white px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Headline -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    🚨 Este é o momento que vai definir seu futuro nos Stories
+                </h1>
+            </div>
 
+            <!-- Vídeo de Vendas -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div style="position:relative;padding-top:177.77777777777777%;"><iframe id="panda-03b68abb-e55a-4945-b679-3d02c43701b3" src="https://player-vz-f9b6858a-acf.tv.pandavideo.com.br/embed/?v=03b68abb-e55a-4945-b679-3d02c43701b3&startTime=5" style="border:none;position:absolute;top:0;left:0;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen=true width="100%" height="100%" fetchpriority="high"></iframe></div>
+            </div>
+
+            <!-- Preço e Compra -->
+            <div class="text-center mb-8">
+                <p class="text-2xl font-bold text-gray-800 mb-6">
+                    StoryFlow™️ por apenas R$37<br>
+                    <span class="text-lg text-gray-600">Acesso vitalício - Sem mensalidades</span>
+                </p>
+                
+                <a 
+                    href="https://pay.kiwify.com.br/g4Sxmx2"
+                    target="_blank"
+                    class="inline-block bg-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-2xl text-xl transition-colors duration-200 shadow-lg"
+                >
+                    💳 Quero destravar meus Stories agora - R$ 37
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- JavaScript -->
     <script src="assets/js/supabase-config.js"></script>
     <script src="assets/js/quiz-engine.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/image-tester.js"></script>
+    <script src="assets/js/charts.js"></script>
 </body>
 </html>

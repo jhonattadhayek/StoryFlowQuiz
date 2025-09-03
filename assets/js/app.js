@@ -134,11 +134,16 @@ function displaySaldoQuestionWithChart(question) {
     const optionsContainer = document.getElementById('answer-options')
     
     // Definir dados simulados para as barras (representando distribuição de respostas)
-    const chartData = [
-        { label: 'Baixo', percentage: 2, color: 'bg-red-500', option: question.options[0] },
-        { label: 'Médio', percentage: 50, color: 'bg-orange-500', option: question.options[1] },
-        { label: 'Alto', percentage: 96, color: 'bg-green-500', option: question.options[2] }
-    ]
+    const colors = ['bg-red-500', 'bg-orange-500', 'bg-green-500', 'bg-blue-500']
+    const percentages = [15, 35, 75, 90]
+    const labels = ['Baixo', 'Médio', 'Alto', 'Muito Alto']
+    
+    const chartData = question.options.map((option, index) => ({
+        label: labels[index] || `Opção ${index + 1}`,
+        percentage: percentages[index] || 50,
+        color: colors[index] || 'bg-gray-500',
+        option: option
+    }))
     
     // Calcular alturas proporcionais baseadas no valor máximo
     const maxPercentage = Math.max(...chartData.map(d => d.percentage))
@@ -179,24 +184,33 @@ function displaySaldoQuestionWithChart(question) {
             </div>
             
             <!-- Opções de Resposta -->
-            <div class="space-y-3">
-                ${question.options.map((option, index) => `
-                    <button class="w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-xl p-5 text-left transition-all duration-200 option-button shadow-md hover:shadow-lg group"
-                            onclick="selectAnswer('${question.id}', '${option.value}', ${option.weight}, this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-full ${chartData[index].color} flex items-center justify-center text-white text-lg font-bold group-hover:bg-white group-hover:text-gray-800">
-                                ${option.emoji}
-                            </div>
-                            <span class="font-medium text-lg option-text">${option.value}</span>
-                            <div class="flex-1 flex justify-end">
-                                <span class="text-gray-400 text-xl group-hover:text-white">→</span>
-                            </div>
-                        </div>
-                    </button>
-                `).join('')}
+            <div id="chart-answer-options" class="space-y-3">
+                <!-- Os botões serão criados via JavaScript -->
             </div>
         </div>
     `
+    
+    // Criar botões de resposta programaticamente
+    const answerOptionsContainer = document.getElementById('chart-answer-options')
+    if (answerOptionsContainer) {
+        question.options.forEach((option, index) => {
+            const button = document.createElement('button')
+            button.className = 'w-full bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary rounded-xl p-5 text-left transition-all duration-200 option-button shadow-md hover:shadow-lg group'
+            button.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-full ${chartData[index].color} flex items-center justify-center text-white text-lg font-bold group-hover:bg-white group-hover:text-gray-800">
+                        ${option.emoji}
+                    </div>
+                    <span class="font-medium text-lg option-text">${option.value}</span>
+                    <div class="flex-1 flex justify-end">
+                        <span class="text-gray-400 text-xl group-hover:text-white">→</span>
+                    </div>
+                </div>
+            `
+            button.onclick = () => selectAnswer(question.id, option.value, option.weight, button)
+            answerOptionsContainer.appendChild(button)
+        })
+    }
     
     // Animar as barras após renderizar com delay escalonado
     setTimeout(() => {
@@ -236,8 +250,6 @@ function selectAnswer(questionId, answer, weight, buttonElement) {
         
         // Auto-avançar para próxima pergunta após um pequeno delay
         setTimeout(() => {
-            console.log('Auto-avançando para próxima pergunta...')
-            
             try {
                 // Verificar se ainda estamos na mesma pergunta antes de avançar
                 if (quizEngine && quizEngine.getCurrentQuestion() && quizEngine.getCurrentQuestion().id === questionId) {
@@ -357,9 +369,28 @@ function watchVideo(videoType) {
 function showProfileSelection() {
     showScreen('profile-screen')
     trackEvent(quizEngine.sessionId, 'profile_selection_shown')
+    
+    // Inicializar gráficos após um pequeno delay para garantir renderização
+    setTimeout(() => {
+        if (typeof initializeCharts === 'function') {
+            initializeCharts()
+        }
+    }, 300)
 }
 
-// Selecionar perfil
+// Prosseguir para informações do produto
+function proceedToProductInfo() {
+    showScreen('product-info-screen')
+    trackEvent(quizEngine.sessionId, 'product_info_shown')
+}
+
+// Prosseguir para vídeo de vendas
+function proceedToVideoSales() {
+    showScreen('plans-screen')
+    trackEvent(quizEngine.sessionId, 'video_sales_shown')
+}
+
+// Selecionar perfil (mantido para compatibilidade)
 function selectProfile(profile) {
     quizEngine.selectProfile(profile)
     showLoading()

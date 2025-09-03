@@ -341,4 +341,3 @@ class QuizEngine {
 
 // Instância global do quiz
 let quizEngine = null
-let quizEngine = null
