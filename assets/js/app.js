@@ -1,4 +1,4 @@
-// App.js - Zapycash Quiz Application
+// App.js - StoryFlow Quiz Application
 document.addEventListener('DOMContentLoaded', function() {
     // Testar conexão com Supabase (desabilitado temporariamente)
     // testSupabaseConnection()
@@ -506,7 +506,7 @@ function openWhatsApp() {
         quizEngine.openWhatsApp()
     } else {
         // Fallback se não houver quiz engine
-        const message = 'Olá! Vim através do quiz financeiro e gostaria de saber mais sobre o Zapycash!'
+        const message = 'Olá! Vim através do quiz de Stories e gostaria de saber mais sobre o StoryFlow!'
         const encodedMessage = encodeURIComponent(message)
         window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank')
     }
@@ -602,59 +602,59 @@ if ('serviceWorker' in navigator) {
 // Depoimentos para o carrossel
 const testimonials = [
     {
-        name: "Luana Menezes",
+        name: "Ana Carolina",
         icon: "👩‍💻",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Essa ferramenta mudou a minha vida! Obrigado por existirem. 💚",
+        text: "Eu travava toda semana sem saber o que postar. Com o StoryFlow™️, consegui organizar meus Stories, montar meu calendário e ainda gerar novas ideias que facilitaram meu trabalho. Agora eu posto com clareza e consistência sem perder tempo.",
         color: "bg-green-200"
     },
     {
         name: "Mário Gois",
         icon: "🎬",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Sou videomaker e organizei a minha empresa e a minha vida pessoal com o Zapycash. Nunca mais quero saber de planilhas no Excel. Muito top e muito intuitivo.",
+        text: "Antes, com 10 mil seguidores, meus Stories batiam no máximo 500 views. Depois do método, um único Story passou de 2.800 visualizações. Mais de 5x mais alcance sem precisar de anúncios.",
         color: "bg-blue-200"
     },
     {
-        name: "Ana Carolina",
+        name: "Júlia Fernandes",
         icon: "👩‍⚕️",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Como médica, minha agenda é corrida e não tinha tempo pra planilhas. Com o Zapycash consigo controlar tudo pelo WhatsApp em segundos. Revolucionário!",
+        text: "Como médica, minha agenda é corrida e não tinha tempo para criar conteúdo. Com o StoryFlow™️ consigo ter Stories prontos em minutos. Revolucionário!",
         color: "bg-purple-200"
     },
     {
         name: "Rafael Santos",
         icon: "👨‍💼",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Empresário há 10 anos e nunca vi algo tão prático. Separei as contas pessoais das empresariais e finalmente tenho controle real dos gastos. Recomendo!",
+        text: "Empresário há 10 anos e nunca vi algo tão prático para Stories. O sistema me deu clareza total na comunicação e aumentou minhas vendas em 40% em 3 meses.",
         color: "bg-orange-200"
     },
     {
         name: "Mariana Costa",
         icon: "👩‍🎓",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Estudante universitária vivendo com pouco dinheiro. O Zapycash me ajudou a economizar R$300 no primeiro mês! Agora consigo guardar dinheiro todo mês.",
+        text: "Estudante e criadora de conteúdo. O StoryFlow™️ me ajudou a ter consistência nos posts e aumentar meu engajamento em 300% no primeiro mês!",
         color: "bg-pink-200"
     },
     {
         name: "Carlos Eduardo",
         icon: "👨‍🔧",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Mecânico autônomo, sempre tive dificuldade com controle financeiro. Agora registro toda entrada e saída na hora. Meu negócio cresceu 40% em 6 meses!",
+        text: "Mecânico autônomo, sempre tive dificuldade com marketing digital. Agora tenho Stories prontos todos os dias e consegui triplicar meus clientes!",
         color: "bg-yellow-200"
     },
     {
-        name: "Júlia Fernandes",
+        name: "Luana Menezes",
         icon: "👩‍🍳",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Dona de casa e empreendedora. Vendo doces caseiros e sempre misturava as contas. Com o Zapycash separei tudo e descobri que estava lucrando muito mais!",
+        text: "Dona de casa e empreendedora. Vendo doces caseiros e sempre travava no que postar. Com o StoryFlow™️ tenho conteúdo estratégico e vendas consistentes!",
         color: "bg-red-200"
     },
     {
         name: "Pedro Almeida",
         icon: "👨‍💻",
         rating: "⭐️⭐️⭐️⭐️⭐️",
-        text: "Desenvolvedor freelancer, trabalho para vários clientes. O controle separado por projeto me deu uma visão clara de quais trabalhos são mais rentáveis.",
+        text: "Desenvolvedor freelancer, trabalho para vários clientes. O StoryFlow™️ me deu um sistema para mostrar meu trabalho e atrair mais clientes qualificados.",
         color: "bg-indigo-200"
     }
 ]
@@ -802,12 +802,12 @@ function subscribePlan(planType, billingType) {
     // Dados dos planos
     const plans = {
         personal: {
-            monthly: { price: 'R$29,90', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?' },
-            yearly: { price: 'R$97,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPON1T?' }
+            monthly: { price: 'R$37,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?' },
+            yearly: { price: 'R$37,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPON1T?' }
         },
         business: {
-            monthly: { price: 'R$37,90', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?' },
-            yearly: { price: 'R$147,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPON1T?' }
+            monthly: { price: 'R$37,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPOGC8?' },
+            yearly: { price: 'R$37,00', link: 'https://checkout.perfectpay.com.br/pay/PPU38CPON1T?' }
         }
     }
 
@@ -823,7 +823,7 @@ function subscribePlan(planType, billingType) {
             })
         }
 
-        // Redirecionar para WhatsApp
+        // Redirecionar para checkout
         window.open(selectedPlan.link, '_blank')
     }
 }
